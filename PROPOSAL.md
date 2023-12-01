@@ -9,7 +9,7 @@ My app is called Slot machine. The player will have 3 chances to play. Only when
 
 **Initial Landing View**
 
-![image](/Users/shan/Desktop/Screenshot 2023-11-30 at 10.11.28 PM.png)
+![Alt text](image.png)
 
 **Results View**
 
