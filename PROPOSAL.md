@@ -9,11 +9,11 @@ My app is called Slot machine. The player will have 3 chances to play. Only when
 
 **Initial Landing View**
 
-![Alt text](image.png)
+<img width="659" alt="Screenshot 2023-11-30 at 10 11 28 PM" src="https://github.com/makeyourwon/Slot-machine/assets/149891853/ad3abe1f-9e56-45fc-99b6-820d4bf07ac3">
 
 **Results View**
 
-![image](/Users/shan/Desktop/Screenshot 2023-11-30 at 10.12.45 PM.png)
+<img width="540" alt="Screenshot 2023-11-30 at 10 12 45 PM" src="https://github.com/makeyourwon/Slot-machine/assets/149891853/6159c309-8f8f-4003-9150-1e0e195c533f">
 
 ## User Stories
 
