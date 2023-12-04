@@ -63,6 +63,7 @@ function timeout(ms){
     })
 }
 
+
 // When START button is clicked, the reels starts to spin asynchronously.
 async function spin(){
     

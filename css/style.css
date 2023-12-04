@@ -137,3 +137,14 @@ body{
     border-radius: 50vmin;
     font-size: 0.9em;
   }
+
+  @keyframes spin{
+    0%{
+        transform: rotateY(0deg)}
+    100% {
+        transform: rotateY(360deg)}
+  }
+
+    .spin-animation{
+    animation: spin 1s infinite lenear;
+  }
