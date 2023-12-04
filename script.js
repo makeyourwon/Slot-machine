@@ -63,10 +63,21 @@ function timeout(ms){
     })
 }
 
-
+// function startSpin(){
+//     return new Promise((resolve) =>{
+//     reelIcon.forEach((element)=>{element.classList.add('spin-animation')
+//     })
+//     })
+// }
+// function stopSpin(){
+//     return new Promise((resolve) =>{
+//     reelIcon.forEach((element)=>{element.classList.remove('spin-animation')})
+//     })
+// }
 // When START button is clicked, the reels starts to spin asynchronously.
 async function spin(){
-    
+    // await startSpin()
+    // await stopSpin()
     await timeout(1000)
     change(0)
     await timeout(1000)
@@ -84,9 +95,9 @@ async function spin(){
 function compareResult(){
     chances -=1
     if (reelArray[0]=== reelArray[1] && reelArray[1] === reelArray[2]) {
-        console.log('You won!')
+        message.innerText = 'You won!'
         state = -1
-        startBtn.style.backgroundColor = grey;
+        startBtn.style.backgroundColor = 'grey';
     }else{
         if (chances === 2){
             message.innerText = `You have ${chances} more chances.`
