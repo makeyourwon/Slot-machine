@@ -43,12 +43,10 @@ const icon = document.querySelectorAll('.icon')
 const emoji = document.createElement('div')
 emoji.classList.add('emoji')
 
+
 //transition function.
 
-const emojiHeight = reel.clientHeight + 'px'
-console.log(emojiHeight)
-// get the length of the img which is also the length of the spinner.
-const spinnerHeight = emojiHeight * img.length
+
 
 //add event listener.
 startBtn.addEventListener('click', init)
@@ -60,14 +58,30 @@ function init(){
 
     }
 }
+// get the arry of emojiheight:
+const emojiHeights = Array.from(document.querySelectorAll('.emoji')).map(
+    (emojiElement) => emojiElement.clientHeight + 'px'
+);
+const emojiHeight = emojiHeights[1]
+// console.log(emojiHeight);
+
+// get the length of the img which is also the length of the spinner.
+const spinnerHeight = emojiHeight * img.length
+//Add event listener to transition.
+
+
 //Get the new array after the START button clicked.
 function change(i){
     const randomIndex = Math.floor(Math.random()*(img.length))
     const randomOffset = randomIndex * reel.clientHeight + 'px'
-    reel.style.top = `${randomOffset}px`
-    reelIcon[i].style.transitionDuration = `2s`
-    reelIcon[i].style.transform = `translateY(0)`
+    const translateY = -randomIndex 
+    reelIcon[i].style.transform = `translateY(${translateY}%)`
+    // reelIcon[i].style.transform = `${randomOffset}px`
+    // reelIcon[i].style.transform = `translateY(${randomOffset})`;
+
+
     console.log(randomIndex)
+    
     // reelIcon[i].innerText = img[randomIndex]
 }
 //Append the array to the reelicon.
@@ -81,13 +95,14 @@ reelIcon.forEach(element =>{
     }})
 
 
-//Add event listener to transition.
-let reelIndex = 0
-// reel.addEventListener('transitionend',()=>{
-//     reelIndex ++
-//     if (reelIndex === icon.length){
-//         spin()
-//     }}, {once:true})
+
+
+
+reel.addEventListener('transitionend',()=>{
+    chances--
+    if (chances === 0){
+        spin()}
+    }, {once:true})
 
 //Set promise.
 function timeout(ms){
@@ -99,15 +114,15 @@ function timeout(ms){
 
 
 async function spin(){
-    //rolling()
-    await timeout(1000)
-    change(0)
-    await timeout(1000)
-    change(1)
-    await timeout(1000)
-    change(2)
-    compareResult()
-
+    
+        await timeout(1000)
+        change(0)
+        await timeout(1000)
+        change(1)
+        await timeout(1000)
+        change(2)
+        compareResult()
+        
     //get the new array. could DELETE later.
     reelIcon.forEach((element,index)=>{
         reelArray[index] = element.textContent})
