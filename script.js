@@ -94,7 +94,7 @@ function change(i){
 
 
 reel.addEventListener('transitionend',()=>{
-    chances--
+
     if (chances === 0){
         spin()}
     }, {once:true})
@@ -109,18 +109,18 @@ function timeout(ms){
 
 
 async function spin(){
-    
-        await timeout(500)
-        const result0 = change(0)
-        console.log(result0)
-        await timeout(500)
-        const result1 = change(1)
-        console.log(result1)
-        await timeout(500)
-        const result2 = change(2)
-        console.log(result2)
 
-        compareResult(result0,result1,result2)
+    await timeout(500)
+    const result0 = change(0)
+    console.log(result0)
+    await timeout(500)
+    const result1 = change(1)
+    console.log(result1)
+    await timeout(500)
+    const result2 = change(2)
+    console.log(result2)
+
+    compareResult(result0,result1,result2)
         
 }
 
