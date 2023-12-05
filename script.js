@@ -94,7 +94,7 @@ function change(i){
 
 
 reel.addEventListener('transitionend',()=>{
-    chances--
+
     if (chances === 0){
         spin()}
     }, {once:true})
