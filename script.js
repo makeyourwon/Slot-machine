@@ -1,7 +1,7 @@
 let chances = 3 
 let state = 1
-
-
+const winSound = new Audio('winSound.wav')
+const loseSound = new Audio('loseSound.wav')
 
 // set 13 slots for each reel.
 const img = [
@@ -81,8 +81,8 @@ function change(i){
     reelIcon[i].style.transform = `translateY(${translateY/img.length*100}%)`
     // reelIcon[i].style.transform = `${randomOffset}px`
     // console.log(spinnerHeight)
-    console.log(`${translateY/img.length * 100}%`)
-    console.log(randomIndex)
+    // console.log(`${translateY/img.length * 100}%`)
+    // console.log(randomIndex)
     //Define randomIndex
     return img[randomIndex]
 
@@ -129,21 +129,26 @@ function compareResult(result0,result1,result2){
     chances -=1
     if (result0 === result1 && result1 === result2) {
         message.innerText = 'You won!'
+        winSound.play()
         state = -1
         startBtn.style.backgroundColor = 'grey';
+        
     }else{
         if (chances === 2){
             message.innerText = `You have ${chances} more chances.`
+            loseSound.play()
             // console.log(`You have ${chances} chances.`)
             
         }else  if (chances === 1){
             message.innerText = `You have ${chances} more chance.`
+            loseSound.play()
             // console.log(`You have ${chances} chances.`)
         }else if(chances === 0){
             message.innerText = `You lost.`
             // console.log(`You lost.`)
             state = -1
             startBtn.style.backgroundColor = 'grey';
+            loseSound.play()
         }
 
     }
