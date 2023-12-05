@@ -23,10 +23,7 @@ const img = [
 
 //Set the default dispaly by randomly picking an icon from the img array.
 const reelIcon = document.querySelectorAll('.reel')
-// reelIcon.forEach((element) => {
-//     element.innerText = img[Math.round(Math.random()*(img.length-1))]
 
-// });
 
 //Get the array of the reels. related to promise.
 const reelArray =[]
@@ -68,10 +65,10 @@ const emojiHeights = Array.from(document.querySelectorAll('.emoji')).map(
     (emojiElement) => emojiElement.clientHeight + 'px'
 );
 const emojiHeight = emojiHeights[1]
-// console.log(emojiHeight);
 
-// get the length of the img which is also the length of the spinner.
-const spinnerHeight = 80 * img.length
+
+// // get the length of the img which is also the length of the spinner.
+// const spinnerHeight = 80 * img.length
 
 
 
@@ -83,14 +80,11 @@ function change(i){
     const translateY = -randomIndex
     reelIcon[i].style.transform = `translateY(${translateY/img.length*100}%)`
     // reelIcon[i].style.transform = `${randomOffset}px`
-    // reelIcon[i].style.transform = `translateY(${translateY})`;
-    console.log(spinnerHeight)
+    // console.log(spinnerHeight)
     console.log(`${translateY/img.length * 100}%`)
     console.log(randomIndex)
     //Define randomIndex
-    const displayIcon = img[randomIndex]
-    console.log(displayIcon)
-    return displayIcon
+    return img[randomIndex]
 
 }
 
@@ -128,10 +122,6 @@ async function spin(){
 
         compareResult(result0,result1,result2)
         
-    //get the new array. could DELETE later.
-    // reelIcon.forEach((element,index)=>{
-    //     reelArray[index] = element.textContent})
-    // console.log(reelArray)
 }
 
 //Compare the result to decide if there is a winner.
@@ -164,13 +154,11 @@ document.querySelector('#reset').addEventListener('click', reset)
 
 // Reset button function.
  function reset(){
-
     chances = 3
     message.innerText = 'Click START to play.'
     startBtn.style.backgroundColor = 'rgb(42, 142, 26)'
     reelIcon.forEach(element =>{
         element.style.transform = `translateY(0%)`
     })
-    
     state = 1
  }
