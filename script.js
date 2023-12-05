@@ -20,27 +20,40 @@ const img = [
     '🍓',
 ]
 
+
 //Set the default dispaly by randomly picking an icon from the img array.
 const reelIcon = document.querySelectorAll('.reel')
-reelIcon.forEach((element) => {
-    element.innerText = img[Math.round(Math.random()*(img.length-1))]
-    // element.innerHTML = `<img src="${img[13]}">`
-});
+// reelIcon.forEach((element) => {
+//     element.innerText = img[Math.round(Math.random()*(img.length-1))]
 
-//Get the array of the reels.
+// });
+
+//Get the array of the reels. related to promise.
 const reelArray =[]
 reelIcon.forEach((element)=>{
      reelArray.push(element.textContent)
 })
 
-//add event listener.
 
 const startBtn = document.querySelector('#start')
 const resetBtn = document.querySelector('#reset')
 const message = document.querySelector('.message')
+const reel = document.querySelector('.reel')
+const icon = document.querySelectorAll('.icon')
+const emoji = document.createElement('div')
+emoji.classList.add('emoji')
 
+//transition function.
+
+const emojiHeight = reel.clientHeight + 'px'
+console.log(emojiHeight)
+// get the length of the img which is also the length of the spinner.
+const spinnerHeight = emojiHeight * img.length
+
+//add event listener.
 startBtn.addEventListener('click', init)
 
+//start button function
 function init(){
     if (state === 1){
         spin()
@@ -49,12 +62,32 @@ function init(){
 }
 //Get the new array after the START button clicked.
 function change(i){
-    // reelArray[i] = img[Math.round(Math.random()*(img.length-1))]
-    // // return (reelArray)
-    // console.log(reelArray)
-    reelIcon[i].innerText = img[Math.round(Math.random()*(img.length-1))]
-
+    const randomIndex = Math.floor(Math.random()*(img.length))
+    const randomOffset = randomIndex * reel.clientHeight + 'px'
+    reel.style.top = `${randomOffset}px`
+    reelIcon[i].style.transitionDuration = `2s`
+    reelIcon[i].style.transform = `translateY(0)`
+    console.log(randomIndex)
+    // reelIcon[i].innerText = img[randomIndex]
 }
+//Append the array to the reelicon.
+
+reelIcon.forEach(element =>{
+    for (let i=0; i<img.length; i++){
+
+        emoji.textContent = img[i]
+        element.appendChild(emoji.cloneNode(true))
+    console.log(reelIcon[i])
+    }})
+
+
+//Add event listener to transition.
+let reelIndex = 0
+// reel.addEventListener('transitionend',()=>{
+//     reelIndex ++
+//     if (reelIndex === icon.length){
+//         spin()
+//     }}, {once:true})
 
 //Set promise.
 function timeout(ms){
@@ -63,21 +96,10 @@ function timeout(ms){
     })
 }
 
-// function startSpin(){
-//     return new Promise((resolve) =>{
-//     reelIcon.forEach((element)=>{element.classList.add('spin-animation')
-//     })
-//     })
-// }
-// function stopSpin(){
-//     return new Promise((resolve) =>{
-//     reelIcon.forEach((element)=>{element.classList.remove('spin-animation')})
-//     })
-// }
-// When START button is clicked, the reels starts to spin asynchronously.
+
+
 async function spin(){
-    // await startSpin()
-    // await stopSpin()
+    //rolling()
     await timeout(1000)
     change(0)
     await timeout(1000)
@@ -92,6 +114,7 @@ async function spin(){
     console.log(reelArray)
 }
 
+//Compare the result to decide if there is a winner.
 function compareResult(){
     chances -=1
     if (reelArray[0]=== reelArray[1] && reelArray[1] === reelArray[2]) {
@@ -107,8 +130,8 @@ function compareResult(){
             message.innerText = `You have ${chances} more chance.`
             console.log(`You have ${chances} chances.`)
         }else if(chances === 0){
-            message.innerText = `You lose.`
-            console.log(`You lose.`)
+            message.innerText = `You lost.`
+            console.log(`You lost.`)
             state = -1
             startBtn.style.backgroundColor = 'grey';
         }
@@ -116,8 +139,10 @@ function compareResult(){
     }
 }
 
+//Add reset button listener.
 document.querySelector('#reset').addEventListener('click', reset)
 
+// Reset button function.
  function reset(){
 
     chances = 3

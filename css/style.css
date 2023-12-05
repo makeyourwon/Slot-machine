@@ -1,7 +1,20 @@
 body{
-    background-color: bisque;
+
+    background-color: rgb(247, 248, 250);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
 }
 
+html{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .container {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 15fr 3fr 1fr;
@@ -16,7 +29,7 @@ body{
 
     max-width: 1000px;
     min-width: 400px;
-
+    position: relative;
   }
   
   .icon {
@@ -28,10 +41,12 @@ body{
       "reel reel reel"; 
     grid-area: icon; 
     padding:2px;
-    border:2px solid rgb(238, 153, 153);
+    background-color: rgb(51, 106, 53);
+    /* overflow: hidden; */
+    height: 250px;
+
 
   }
-
 
   .reel{
     display: flex;
@@ -42,48 +57,13 @@ body{
     padding: 2px;
     margin:5px;
     background-color: white;
-    overflow: hidden;
-
+    height:vh;
+    transition: transform 2s ease-in-out;
+    flex-direction: column;
 
   }
-  
-  /* this could be deleted if everythig works fine later
-  .icon {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "first-reel second-reel third-reel"
-      "first-reel second-reel third-reel"
-      "first-reel second-reel third-reel";
-    grid-area: icon;
-    border-radius: 10px;
-    border:5px solid rgb(238, 153, 153);
-
-    .reel{
-
-        border:10px solid rgba(190, 77, 77, 0.265);
-        border-radius: 1px;
-        height: 3fr;
-      }
-  } */
 
 
-  
-  /* .first-reel { 
-    grid-area: first-reel;
-    border:10px solid rgba(190, 77, 77, 0.265);
-    border-radius: 1px;
-}
-  
-  .second-reel { grid-area: second-reel;
-    border:10px solid rgba(190, 77, 77, 0.265);
-    border-radius: 1px; }
-  
-  .third-reel { grid-area: third-reel;
-    border:10px solid rgba(190, 77, 77, 0.265);
-    border-radius: 1px; } */
   
   .reset-btn { 
     grid-area: reset-btn;
@@ -109,7 +89,9 @@ body{
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 0.9em;
+    font-family:'Courier New', Courier, monospace;
+    margin: 2px;
  }
 
  button{
@@ -126,6 +108,7 @@ body{
     color: white;
     border-radius: 19vmin;
     font-size: 0.9em;
+    cursor:pointer;
     
   }
 
@@ -137,15 +120,12 @@ body{
     height:70%;
     border-radius: 50vmin;
     font-size: 0.9em;
+    cursor:pointer;
   }
 
-  @keyframes spin{
-    0%{
-        transform: rotateX(0deg)}
-    100% {
-        transform: rotateX(360deg)}
-  }
-
-    .spin-animation{
-    animation: spin 1s infinite linear;
-  }
+.box{
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
