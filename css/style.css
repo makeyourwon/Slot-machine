@@ -72,7 +72,7 @@ html{
     justify-content: center;
     text-align: center;
     font-size: 150px;
-    z-index: 1000px;
+    z-index: 1000;
 }
   
   .reset-btn { 
