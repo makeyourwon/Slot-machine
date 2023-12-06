@@ -42,8 +42,10 @@ html{
     grid-area: icon; 
     background-color:rgb(99, 148, 99) ;
     overflow: hidden;
+    margin:7px;
     height: 200px;
     grid-gap: 5px;
+    box-shadow: 0 0 5px 5px ;
     
 
 
@@ -64,6 +66,8 @@ html{
     transition: transform 2s ease-in-out;
     flex-direction: column;
     position: relative;
+    box-shadow: 0 0 7px 5px ;
+
 
   }
 
