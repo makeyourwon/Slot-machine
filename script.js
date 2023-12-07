@@ -118,16 +118,16 @@ function compareResult(result0,result1,result2){
         
     }else{
         if (chances === 2){
-            message.innerText = `You have ${chances} more chances.`
+            message.innerHTML = `You have <span>${chances}</span> more chances.`
             loseSound.play()
             // console.log(`You have ${chances} chances.`)
             
         }else  if (chances === 1){
-            message.innerText = `You have ${chances} more chance.`
+            message.innerHTML = `You have <span>${chances}</span> more chance.`
             loseSound.play()
             // console.log(`You have ${chances} chances.`)
         }else if(chances === 0){
-            message.innerText = `You lost.`
+            message.innerHTML = `<span class="lost">You lost 🥺.</span>`
             // console.log(`You lost.`)
             state = -1
             startBtn.style.backgroundColor = 'grey';
