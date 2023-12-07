@@ -18,9 +18,11 @@ https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ff
 
 4. Click the reset button to restart.
 
+5. When using a smaller screen, the screen size is fixed.
+
 # External sources:
-Transition logic: https://codepen.io/jcjms/pen/JjmajpW
-How to add audio: https://noaheakin.medium.com/adding-sound-to-your-js-web-app-f6a0ca728984
++ Transition logic: https://codepen.io/jcjms/pen/JjmajpW
++ How to add audio: https://noaheakin.medium.com/adding-sound-to-your-js-web-app-f6a0ca728984
 
 # Daily plan
 | Day        |   | Task                                    | Blockers |  Notes/ Thoughts |
