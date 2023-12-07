@@ -110,7 +110,7 @@ function timeout(ms){
 
 async function spin(){
 
-    await timeout(500)
+    await timeout(100)
     const result0 = change(0)
     console.log(result0)
     await timeout(500)
