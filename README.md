@@ -4,7 +4,8 @@ I got recommendations from Emre and picked SLOT MACHINE. Because that's the only
 link on Vercel:
 https://slot-machine-lemon.vercel.app/
 
-# Technologies used: HTML, CSS, Javascript(Promise)
+# Technologies used: 
+HTML, CSS(transition), Javascript(Promise)
 
 # Workflow:
 https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fu6WzruX4NO0S0ysxdy5tmL%2Fslot-machine%3Ftype%3Dwhiteboard%26node-id%3D0%253A1%26t%3DiRDpjitOJ2yGGJBz-1"
@@ -36,5 +37,5 @@ How to add audio: https://noaheakin.medium.com/adding-sound-to-your-js-web-app-f
 |            |   |                                         |          |                  |
 
 # THANKS
-Technic support: Emre, Greg, Fritz
-Inspirations, suggestions and encouragement: Aldiana, Joshua, Murad
++ Technic support: Emre, Greg, Fritz
++ Inspirations, suggestions and encouragement: Aldiana, Joshua, Murad

@@ -67,30 +67,13 @@ const emojiHeights = Array.from(document.querySelectorAll('.emoji')).map(
 const emojiHeight = emojiHeights[1]
 
 
-// // get the length of the img which is also the length of the spinner.
-// const spinnerHeight = 80 * img.length
-
-
-
-
 //Get the new array after the START button clicked.
 function change(i){
     const randomIndex = Math.floor(Math.random()*(img.length))
-    // const randomOffset = -randomIndex * reel.clientHeight + 'px'
     const translateY = -randomIndex
     reelIcon[i].style.transform = `translateY(${translateY/img.length*100}%)`
-    // reelIcon[i].style.transform = `${randomOffset}px`
-    // console.log(spinnerHeight)
-    // console.log(`${translateY/img.length * 100}%`)
-    // console.log(randomIndex)
-    //Define randomIndex
     return img[randomIndex]
-
 }
-
-
-
-
 
 
 reel.addEventListener('transitionend',()=>{
