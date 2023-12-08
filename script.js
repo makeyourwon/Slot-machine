@@ -9,29 +9,22 @@ const loseSound = new Audio('loseSound.wav')
 const img = [
     '🎄',
     '❄️',
-    '🔥',
-    '🎉',
-    '👀',
-    '🥳',
-    '🌟',
-    '💩',
-    '☃️',
-    '🐔',
-    '🥩',
-    '🥟',
-    '🍓',
+//     '🔥',
+//     '🎉',
+//     '👀',
+//     '🥳',
+//     '🌟',
+//     '💩',
+//     '☃️',
+//     '🐔',
+//     '🥩',
+//     '🥟',
+//     '🍓',
 ]
 
 
 //Set the default dispaly by randomly picking an icon from the img array.
 const reelIcon = document.querySelectorAll('.reel')
-
-
-//Get the array of the reels. related to promise.
-const reelArray =[]
-reelIcon.forEach((element)=>{
-     reelArray.push(element.textContent)
-})
 
 // Define variables.
 const startBtn = document.querySelector('#start')
@@ -52,7 +45,7 @@ const user = {
         third:'',
 }}
 
-//Append the image array to the reelicon.
+//Append the image array to the reelIcon.
 reelIcon.forEach(element =>{
     for (let i=0; i<img.length; i++){
         emoji.textContent = img[i]
@@ -103,25 +96,7 @@ function timeout(ms){
 }
 
 
-// Define spin function to cover rolling, delay and result comparison requirements.
-async function spin(){
-    await timeout(100)
-    const result0 = change(0)
-    // console.log(result0)
-    await timeout(500)
-    const result1 = change(1)
-    // console.log(result1)
-    await timeout(500)
-    const result2 = change(2)
-    // console.log(result2)
 
-    compareResult(result0,result1,result2)
-
-    localStorage.setItem(inputValue.value, JSON.stringify(user))
-    submitBtn.removeEventListener('click',active)
-    submitBtn.style.backgroundColor = 'grey'
-        
-}
 
 //Compare the result to decide if there is a winner.
 function compareResult(result0,result1,result2){
@@ -163,6 +138,26 @@ function compareResult(result0,result1,result2){
     }
 }
 
+// Define spin function to cover rolling, delay and result comparison requirements.
+async function spin(){
+    await timeout(100)
+    const result0 = change(0)
+    // console.log(result0)
+    await timeout(500)
+    const result1 = change(1)
+    // console.log(result1)
+    await timeout(500)
+    const result2 = change(2)
+    // console.log(result2)
+
+    compareResult(result0,result1,result2)
+
+    localStorage.setItem(inputValue.value, JSON.stringify(user))
+    submitBtn.removeEventListener('click',active)
+    submitBtn.style.backgroundColor = 'grey'
+        
+}
+
 //Add reset button listener.
 document.querySelector('#reset').addEventListener('click', reset)
 
@@ -173,9 +168,10 @@ document.querySelector('#reset').addEventListener('click', reset)
     message.innerText = 'Input your name to start the game.'
     startBtn.style.backgroundColor = 'grey';
     inputValue.value = ''
-    submitBtn.addEventListener('click', active)
-    submitBtn.style.backgroundColor = 'rgb(158, 2, 2)';
     user.scores.first = '';
     user.scores.second = '';
     user.scores.third = '';
+    submitBtn.addEventListener('click', active)
+    submitBtn.style.backgroundColor = 'rgb(158, 2, 2)';
+
  }
