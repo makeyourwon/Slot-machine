@@ -58,7 +58,7 @@ Do not neglect to plan, you will thank yourself later for being proactive!
 
 
 Psudeo code
-1. Set variables for buttons: startBtn, resetBtn, reel, winPattern, chance
+1. Set variables for buttons: startBtn, resetBtn, reel, chances, icon(reel container).
 
 2. When startBtn is clicked, init function to start the game. Set 3 chances for player by default and reels start to roll ASYNCHRONOUSLY, complex part.
 
@@ -70,3 +70,4 @@ Psudeo code
 5. When all 3 chances are used up without a win, log message "Hope to see you next time."
 
 6. Reset button to call the init function to replay.
+

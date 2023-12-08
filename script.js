@@ -5,8 +5,6 @@ let state = -1
 const winSound = new Audio('winSound.wav')
 const loseSound = new Audio('loseSound.wav')
 
-
-
 // set 13 slots for each reel.
 const img = [
     '🎄',
@@ -47,12 +45,12 @@ const emoji = document.createElement('div')
 const userName = document.querySelector('.name').value
 emoji.classList.add('emoji')
 startBtn.style.backgroundColor = 'grey';
-const user = {inputValue:{
+const user = {
     scores:{
         first:'',
         second:'',
         third:'',
-}}}
+}}
 
 //Append the image array to the reelicon.
 reelIcon.forEach(element =>{
@@ -71,17 +69,16 @@ function active(){
         chances = 3
         startBtn.style.backgroundColor = 'rgb(42, 142, 26)'
         message.innerText = 'Click START to play.'
-        //add event listener.
+        //add start button event listener.
         startBtn.addEventListener('click', init)
 }
 }
-//start button function
+//Start button function init.
 function init(){
     if (state === 1){
         spin()
     }
 }
-
 
 //Define the change function for transition.
 function change(i){
@@ -91,7 +88,7 @@ function change(i){
     return img[randomIndex]
 }
 
-
+//Add event listener to each reel.
 reel.addEventListener('transitionend',()=>{
     if (chances === 0){
         spin()
@@ -132,12 +129,12 @@ function compareResult(result0,result1,result2){
     if (result0 === result1 && result1 === result2 ) {
         message.innerText = 'You won!'
         if (chances === 3){
-            user.inputValue.scores.first = 'won'
+            user.scores.first = 'won'
         }else if(chances === 2){
-            user.inputValue.scores.second = 'won'
+            user.scores.second = 'won'
         }else if(chances === 1){
             console.log(chances)
-            user.inputValue.scores.third = 'won'
+            user.scores.third = 'won'
         }
         state = -1
         winSound.play()
@@ -150,15 +147,15 @@ function compareResult(result0,result1,result2){
         if (chances === 2){
             message.innerHTML = `You have <span>${chances}</span> more chances.`
             loseSound.play()
-            user.inputValue.scores.first = 'lost'
+            user.scores.first = 'lost'
         }else  if (chances === 1){
             message.innerHTML = `You have <span>${chances}</span> more chance.`
             loseSound.play()
-            user.inputValue.scores.second = 'lost'
+            user.scores.second = 'lost'
         }else if(chances === 0){
             message.innerHTML = `<span class="lost">You lost 🥺.</span>`
             loseSound.play() 
-            user.inputValue.scores.third = 'lost'  
+            user.scores.third = 'lost'  
             state = -1          
             startBtn.style.backgroundColor = 'grey';
                   
@@ -178,7 +175,7 @@ document.querySelector('#reset').addEventListener('click', reset)
     inputValue.value = ''
     submitBtn.addEventListener('click', active)
     submitBtn.style.backgroundColor = 'rgb(158, 2, 2)';
-    user.inputValue.scores.first = '';
-    user.inputValue.scores.second = '';
-    user.inputValue.scores.third = '';
+    user.scores.first = '';
+    user.scores.second = '';
+    user.scores.third = '';
  }
