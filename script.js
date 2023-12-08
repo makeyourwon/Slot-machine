@@ -1,7 +1,11 @@
 let chances = 3 
-let state = 1
+let state = -1
+
+
 const winSound = new Audio('winSound.wav')
 const loseSound = new Audio('loseSound.wav')
+
+
 
 // set 13 slots for each reel.
 const img = [
@@ -31,43 +35,55 @@ reelIcon.forEach((element)=>{
      reelArray.push(element.textContent)
 })
 
-
+// Define variables.
 const startBtn = document.querySelector('#start')
 const resetBtn = document.querySelector('#reset')
+const submitBtn = document.querySelector('#submit')
+const inputValue = document.querySelector('input')
 const message = document.querySelector('.message')
 const reel = document.querySelector('.reel')
 const icon = document.querySelectorAll('.icon')
 const emoji = document.createElement('div')
+const userName = document.querySelector('.name').value
 emoji.classList.add('emoji')
-
+startBtn.style.backgroundColor = 'grey';
+const user = {inputValue:{
+    scores:{
+        first:'',
+        second:'',
+        third:'',
+}}}
 
 //Append the image array to the reelicon.
 reelIcon.forEach(element =>{
     for (let i=0; i<img.length; i++){
         emoji.textContent = img[i]
         element.appendChild(emoji.cloneNode(true))
-
     }})
 
-
-//add event listener.
-startBtn.addEventListener('click', init)
-
+//Add event listener to Submit button to get the game started.
+submitBtn.addEventListener('click', active)
+function active(){
+    if (inputValue.value == ''){
+        state = -1
+    }else{
+        state = 1
+        chances = 3
+        startBtn.style.backgroundColor = 'rgb(42, 142, 26)'
+        message.innerText = 'Click START to play.'
+        //add event listener.
+        startBtn.addEventListener('click', init)
+}
+}
 //start button function
 function init(){
     if (state === 1){
         spin()
-
     }
 }
-// get the arry of emojiheight:
-const emojiHeights = Array.from(document.querySelectorAll('.emoji')).map(
-    (emojiElement) => emojiElement.clientHeight + 'px'
-);
-const emojiHeight = emojiHeights[1]
 
 
-//Get the new array after the START button clicked.
+//Define the change function for transition.
 function change(i){
     const randomIndex = Math.floor(Math.random()*(img.length))
     const translateY = -randomIndex
@@ -77,11 +93,11 @@ function change(i){
 
 
 reel.addEventListener('transitionend',()=>{
-
     if (chances === 0){
-        spin()}
+        spin()
+    }
     }, {once:true})
-
+    
 //Set promise.
 function timeout(ms){
     return new Promise((resolve) => {
@@ -90,50 +106,63 @@ function timeout(ms){
 }
 
 
-
+// Define spin function to cover rolling, delay and result comparison requirements.
 async function spin(){
-
     await timeout(100)
     const result0 = change(0)
-    console.log(result0)
+    // console.log(result0)
     await timeout(500)
     const result1 = change(1)
-    console.log(result1)
+    // console.log(result1)
     await timeout(500)
     const result2 = change(2)
-    console.log(result2)
+    // console.log(result2)
 
     compareResult(result0,result1,result2)
+
+    localStorage.setItem(inputValue.value, JSON.stringify(user))
+    submitBtn.removeEventListener('click',active)
+    submitBtn.style.backgroundColor = 'grey'
         
 }
 
 //Compare the result to decide if there is a winner.
 function compareResult(result0,result1,result2){
-    chances -=1
-    if (result0 === result1 && result1 === result2) {
+    
+    if (result0 === result1 && result1 === result2 ) {
         message.innerText = 'You won!'
-        winSound.play()
+        if (chances === 3){
+            user.inputValue.scores.first = 'won'
+        }else if(chances === 2){
+            user.inputValue.scores.second = 'won'
+        }else if(chances === 1){
+            console.log(chances)
+            user.inputValue.scores.third = 'won'
+        }
         state = -1
+        winSound.play()
         startBtn.style.backgroundColor = 'grey';
-        
+
+ 
     }else{
+        chances -=1
+        
         if (chances === 2){
             message.innerHTML = `You have <span>${chances}</span> more chances.`
             loseSound.play()
-            // console.log(`You have ${chances} chances.`)
-            
+            user.inputValue.scores.first = 'lost'
         }else  if (chances === 1){
             message.innerHTML = `You have <span>${chances}</span> more chance.`
             loseSound.play()
-            // console.log(`You have ${chances} chances.`)
+            user.inputValue.scores.second = 'lost'
         }else if(chances === 0){
             message.innerHTML = `<span class="lost">You lost 🥺.</span>`
-            // console.log(`You lost.`)
-            state = -1
+            loseSound.play() 
+            user.inputValue.scores.third = 'lost'  
+            state = -1          
             startBtn.style.backgroundColor = 'grey';
-            loseSound.play()
+                  
         }
-
     }
 }
 
@@ -142,11 +171,14 @@ document.querySelector('#reset').addEventListener('click', reset)
 
 // Reset button function.
  function reset(){
-    chances = 3
-    message.innerText = 'Click START to play.'
-    startBtn.style.backgroundColor = 'rgb(42, 142, 26)'
-    reelIcon.forEach(element =>{
-        element.style.transform = `translateY(0%)`
-    })
-    state = 1
+    state = -1
+    chances = 0
+    message.innerText = 'Input your name to start the game.'
+    startBtn.style.backgroundColor = 'grey';
+    inputValue.value = ''
+    submitBtn.addEventListener('click', active)
+    submitBtn.style.backgroundColor = 'rgb(158, 2, 2)';
+    user.inputValue.scores.first = '';
+    user.inputValue.scores.second = '';
+    user.inputValue.scores.third = '';
  }
