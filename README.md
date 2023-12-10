@@ -85,5 +85,9 @@ Set inputValue and user object to empty.
 Add the event listener to the submit button and change the color back to red.
 
 
+# Next step:
+
+1. Update the UI.
+
 
 
